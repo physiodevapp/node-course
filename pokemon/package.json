@@ -1,0 +1,21 @@
+{
+  "name": "pokemon",
+  "version": "0.0.1",
+  "main": "10.routing.js",
+  "scripts": {
+    "dev:10": "node --watch 10.routing.js",
+    "dev:11": "node --watch 11.express.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "devDependencies": {
+    "standard": "^17.1.2"
+  },
+  "dependencies": {
+    "express": "4.21.1"
+  }
+}
