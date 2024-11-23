@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "dev:films": "node --watch app.js"
+    "dev:movies": "node --watch app.js"
   },
   "keywords": [],
   "author": "",
