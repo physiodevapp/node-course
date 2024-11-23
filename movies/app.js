@@ -2,9 +2,24 @@ const express = require('express')
 const movies = require('./movies.json')
 const crypto = require('node:crypto')
 const { validateMovie, validateUpdateMovie } = require('./schemas/movieSchema')
+const cors = require('cors')
 
 const app = express()
 app.use(express.json())
+app.use(cors({
+  origin: (origin, callback) => {
+    const ACCEPTED_ORIGINS = [
+      'http://localhost:8080',
+      'http://localhost:1234'
+    ]
+
+    if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+      return callback(null, true)
+    }
+
+    return callback(new Error('Not allowed by CORS'))
+  }
+}))
 
 app.disable('x-powered-by')
 
