@@ -1,0 +1,35 @@
+### Get movies
+GET http://localhost:1234/movies
+
+### Recuperar todas las películas por un género
+GET http://localhost:1234/movies?genre=ACTION
+
+### Get movie by ID
+GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+### Create a movie
+POST http://localhost:1234/movies
+Content-Type: application/json
+
+{
+  "title": "The best fil ever",
+  "year": 2001,
+  "director": "Jumanji",
+  "duration": 120,
+  "poster": "https://i.ebayimg.com/images/g/4goAAOSwMyBe7hnQ/s-l1200.webp",
+  "genre": [
+    "Adventure"
+  ],
+  "rate": 10
+}
+
+### Update a movie
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+  "year": 1996
+}
+
+### Delete a movie
+DELETE http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
