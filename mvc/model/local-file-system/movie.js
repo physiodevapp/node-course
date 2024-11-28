@@ -1,4 +1,4 @@
-import { requireJSON } from '../utils.js'
+import { requireJSON } from '../../utils.js'
 
 const movies = requireJSON('./movies.json')
 
@@ -21,18 +21,18 @@ export class MovieModel {
     return movies[movieIndex]
   }
 
-  static async create ({ movie }) {
+  static async create ({ input }) {
     const newMovie = {
       id: crypto.randomUUID(),
-      ...movie
+      ...input
     }
 
     movies.push(newMovie)
 
-    return movie
+    return input
   }
 
-  static async update ({ id, movie }) {
+  static async update ({ id, input }) {
     const movieIndex = movies.findIndex((movie) => movie.id === id)
 
     if (movieIndex === -1) {
@@ -44,7 +44,7 @@ export class MovieModel {
 
     const updateMovie = {
       ...movies[movieIndex],
-      ...movie
+      ...input
     }
 
     movies[movieIndex] = updateMovie

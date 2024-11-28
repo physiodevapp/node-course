@@ -4,7 +4,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev:mvc": "node --watch app.js"
+    "dev:mvc": "node --env-file .env --watch app.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "dependencies": {
     "cors": "2.8.5",
     "express": "4.21.1",
+    "mongodb": "6.11.0",
     "zod": "3.23.8"
   },
   "devDependencies": {

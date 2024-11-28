@@ -1,4 +1,5 @@
-import { MovieModel } from '../model/movie.js'
+// import { MovieModel } from '../model/local-file-system/movie.js'
+import { MovieModel } from '../model/mongodb/movie.js'
 import { validateMovie, validateUpdateMovie } from '../schemas/movieSchema.js'
 
 export class MovieController {
@@ -29,7 +30,7 @@ export class MovieController {
       return res.status(400).json({ error: JSON.parse(result.error) })
     }
 
-    const newMovie = await MovieModel.create({ movie: result.data })
+    const newMovie = await MovieModel.create({ input: result.data })
 
     res.status(201).json(newMovie)
   }

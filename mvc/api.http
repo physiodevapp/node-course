@@ -5,14 +5,14 @@ GET http://localhost:1234/movies
 GET http://localhost:1234/movies?genre=ACTION
 
 ### Get movie by ID
-GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+GET http://localhost:1234/movies/674856a8d09fdceec547db12
 
 ### Create a movie
 POST http://localhost:1234/movies
 Content-Type: application/json
 
 {
-  "title": "The best fil ever",
+  "title": "The best film ever",
   "year": 2001,
   "director": "Jumanji",
   "duration": 120,
