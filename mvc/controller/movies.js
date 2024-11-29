@@ -59,7 +59,7 @@ export class MovieController {
     const result = await MovieModel.delete({ id })
 
     if (result) {
-      return res.status(404).send('Movie not found')
+      return res.status(404).json({ message: 'Movie not found' })
     }
 
     res.status(200).json({ message: 'Movie deleted' })

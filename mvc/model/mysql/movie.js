@@ -43,7 +43,13 @@ export class MovieModel {
   }
 
   static async getById ({ id }) {
+    const [movies] = await connection.query(`
+      SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id 
+      FROM movie
+      WHERE BIN_TO_UUID(id) = ?;
+      `, id)
 
+    return movies
   }
 
   static async create ({ input }) {
@@ -51,7 +57,12 @@ export class MovieModel {
   }
 
   static async delete ({ id }) {
+    const [{ affectedRows }] = await connection.query(`
+      DELETE FROM movie 
+      WHERE BIN_TO_UUID(id) = ?;
+      `, id)
 
+    return affectedRows === 0
   }
 
   static async update ({ id, input }) {
