@@ -66,6 +66,26 @@ export class MovieModel {
   }
 
   static async update ({ id, input }) {
+    const [oldCompleteInput] = await this.getById({ id })
+    const newCompleteInput = {
+      ...oldCompleteInput,
+      ...input
+    }
+    const { title, year, director, duration, poster, rate } = newCompleteInput
 
+    await connection.query(`
+      UPDATE movie
+      SET title = ?, year = ?, director = ?, duration = ?, poster = ?, rate = ?
+      WHERE BIN_TO_UUID(id) = ?;
+      `, [title, year, director, duration, poster, rate, id])
+
+    const [movies] = await this.getById({ id })
+
+    console.log(movies)
+
+    return {
+      success: true,
+      data: movies
+    }
   }
 }
