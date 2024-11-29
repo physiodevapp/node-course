@@ -13,7 +13,33 @@ const connection = await mysql.createConnection(connectionString)
 
 export class MovieModel {
   static async getAll ({ genre }) {
+    if (genre) {
+      const lowerCaseGenre = genre.toLowerCase()
 
+      const [genres] = await connection.query(`
+        SELECT id, name 
+        FROM genre 
+        WHERE LOWER(name) = ?
+        `, [lowerCaseGenre])
+
+      const [{ id }] = genres
+
+      const [movies] = await connection.query(`
+        SELECT movie.title, movie.year, movie.director, movie.duration, movie.poster, movie.rate, BIN_TO_UUID(movie.id) AS id
+        FROM movie_genre
+        INNER JOIN movie ON movie.id = movie_genre.movie_id
+        WHERE genre_id = ?
+        `, id)
+
+      return movies
+    }
+
+    const [movies] = await connection.query(
+      `SELECT title, year, director, duration, poster, rate, BIN_TO_UUID(id) id 
+      FROM movie;`
+    )
+
+    return movies
   }
 
   static async getById ({ id }) {

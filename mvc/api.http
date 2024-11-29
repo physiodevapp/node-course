@@ -5,7 +5,7 @@ GET http://localhost:1234/movies
 GET http://localhost:1234/movies?genre=ACTION
 
 ### Get movie by ID
-GET http://localhost:1234/movies/674856a8d09fdceec547db12
+GET http://localhost:1234/movies/15e7fb9d-ad87-11ef-8319-3024a9944028
 
 ### Create a movie
 POST http://localhost:1234/movies
