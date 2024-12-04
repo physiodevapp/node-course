@@ -72,13 +72,13 @@
 <body>
   <div class="container">
     <h2 id="form-title">Iniciar Sesión</h2>
-    <form id="login-form">
+    <form id="login-form" method="post" action="/login">
       <input type="email" id="login-email" placeholder="Correo Electrónico" required>
       <input type="password" id="login-password" placeholder="Contraseña" required>
       <button type="submit">Iniciar Sesión</button>
     </form>
 
-    <form id="register-form" style="display: none;">
+    <form id="register-form" method="post" action="/signup" style="display: none;">
       <input type="text" id="register-name" placeholder="Nombre Completo" required>
       <input type="email" id="register-email" placeholder="Correo Electrónico" required>
       <input type="password" id="register-password" placeholder="Contraseña" required>
@@ -94,7 +94,6 @@
     const toggleLink = document.getElementById('toggle-link');
     const formTitle = document.getElementById('form-title');
 
-    // Cambiar entre formularios
     toggleLink.addEventListener('click', () => {
       if (loginForm.style.display === 'none') {
         loginForm.style.display = 'flex';
@@ -109,24 +108,6 @@
       }
     });
 
-    // Manejar submit del formulario de inicio de sesión
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
-      console.log('Iniciando sesión con:', { email, password });
-      alert('Inicio de sesión exitoso!');
-    });
-
-    // Manejar submit del formulario de registro
-    registerForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('register-name').value;
-      const email = document.getElementById('register-email').value;
-      const password = document.getElementById('register-password').value;
-      console.log('Registrando usuario con:', { name, email, password });
-      alert('¡Registro exitoso!');
-    });
   </script>
 </body>
 
