@@ -1,1 +1,1 @@
-export const { PORT = 3000 } = process.env
+export const { PORT = 3000, JWT_SECRET_KEY } = process.env
