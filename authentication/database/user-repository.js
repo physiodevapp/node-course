@@ -37,9 +37,10 @@ export class UserRepository {
 
   static login = async ({ username, password }) => {
     const user = User.findOne({ username })
-    const { password: hashedPassword } = user
 
     if (!user) throw new Error('User does not exist')
+
+    const { password: hashedPassword } = user
 
     try {
       const isValid = await bcrypt.compare(password, hashedPassword)
