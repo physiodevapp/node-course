@@ -1,6 +1,7 @@
 import crypto from 'node:crypto'
 
 import DBLocal from 'db-local'
+import bcrypt from 'bcrypt'
 
 const { Schema } = new DBLocal({ path: './database' })
 
@@ -11,7 +12,7 @@ const User = Schema('User', {
 })
 
 export class UserRepository {
-  static create = ({ username, password }) => {
+  static create = async ({ username, password }) => {
     try {
       ValidationUser.username(username)
       ValidationUser.password(password)
@@ -20,10 +21,12 @@ export class UserRepository {
       if (user) throw new Error('User already exists')
 
       const id = crypto.randomUUID()
+      const hashedPassword = await bcrypt.hash(password, 10)
+
       User.create({
         _id: id,
         username,
-        password
+        password: hashedPassword
       }).save()
 
       return id
