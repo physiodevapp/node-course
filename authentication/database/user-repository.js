@@ -34,6 +34,25 @@ export class UserRepository {
       throw new Error('Error while creating the new user')
     }
   }
+
+  static login = async ({ username, password }) => {
+    const user = User.findOne({ username })
+    const { password: hashedPassword } = user
+
+    if (!user) throw new Error('User does not exist')
+
+    try {
+      const isValid = await bcrypt.compare(password, hashedPassword)
+
+      if (!isValid) throw new Error('Error while trying to log in')
+
+      const { password: _, ...clientUser } = user
+
+      return clientUser
+    } catch (error) {
+      throw new Error('Error while trying to log in')
+    }
+  }
 }
 
 class ValidationUser {
