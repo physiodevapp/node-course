@@ -55,9 +55,11 @@ app.get('/protected', (req, res) => {
   try {
     const user = jwt.verify(token, JWT_SECRET_KEY)
 
-    res.status(200).send(user)
+    if (!user) throw new Error('Protected route')
+
+    res.status(200).send('This content is protected')
   } catch (error) {
-    res.send('This content is protected')
+    res.status(401).redirect('/')
   }
 })
 
